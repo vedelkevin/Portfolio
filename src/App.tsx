@@ -1,4 +1,5 @@
 import ThemeToggle from './components/ThemeToggle'
+import ScrollToTop from './components/ScrollToTop'
 import './App.css'
 
 const interests = [
@@ -38,7 +39,10 @@ function App() {
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label="Kevin Langat, home">
           <span className="wordmark-mark">K</span>
-          <span>Kevin Langat</span>
+          <span className="wordmark-copy">
+            <span>Kevin Langat</span>
+            <span className="wordmark-slogan">Carpe Diem</span>
+          </span>
         </a>
 
         <nav aria-label="Primary navigation">
@@ -203,6 +207,8 @@ function App() {
         <p>© {new Date().getFullYear()} Kevin Langat</p>
         <p>Designed and built with curiosity.</p>
       </footer>
+
+      <ScrollToTop />
     </>
   )
 }
