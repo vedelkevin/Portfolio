@@ -475,7 +475,7 @@ footer {
 
 .photo-strip {
   display: grid;
-  grid-template-columns: 1.45fr 0.8fr 0.8fr;
+  grid-template-columns: 1.45fr 0.8fr;
   gap: 12px;
   margin-bottom: 64px;
 }
@@ -772,10 +772,6 @@ footer p {
     grid-template-columns: 1fr 1fr;
   }
 
-  .photo-card-wide {
-    grid-column: 1 / -1;
-  }
-
   .section-heading {
     gap: 24px;
   }
@@ -828,9 +824,7 @@ footer p {
     margin-bottom: 48px;
   }
 
-  .photo-card,
-  .photo-card-wide {
-    grid-column: auto;
+  .photo-card {
     height: 220px;
   }
 

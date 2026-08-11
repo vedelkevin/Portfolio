@@ -138,7 +138,7 @@ function App() {
           </div>
 
           <div className="photo-strip">
-            <figure className="photo-card photo-card-wide">
+            <figure className="photo-card">
               <img
                 src="/images/building.webp"
                 alt="Laptop displaying code in a development workspace"
@@ -155,15 +155,6 @@ function App() {
                 decoding="async"
               />
               <figcaption>Analyze</figcaption>
-            </figure>
-            <figure className="photo-card">
-              <img
-                src="/images/collaboration.webp"
-                alt="Team collaborating around a table"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Collaborate</figcaption>
             </figure>
           </div>
 
