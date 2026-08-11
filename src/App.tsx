@@ -8,10 +8,10 @@ const interests = [
   'Artificial intelligence',
   'LLM applications',
   'UI/UX',
-  'Educational technology',
-  'Accessibility technology',
+  'Derivatives',
+  'Economics',
   'Product development',
-  'Creative technology',
+  'Sales and marketing',
 ]
 
 const achievementAreas = [
@@ -137,6 +137,36 @@ function App() {
             </div>
           </div>
 
+          <div className="photo-strip">
+            <figure className="photo-card photo-card-wide">
+              <img
+                src="/images/building.webp"
+                alt="Laptop displaying code in a development workspace"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Build</figcaption>
+            </figure>
+            <figure className="photo-card">
+              <img
+                src="/images/analysis.webp"
+                alt="Analytics dashboard showing data visualizations"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Analyze</figcaption>
+            </figure>
+            <figure className="photo-card">
+              <img
+                src="/images/collaboration.webp"
+                alt="Team collaborating around a table"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Collaborate</figcaption>
+            </figure>
+          </div>
+
           <div className="about-grid">
             <div className="about-copy">
               <p className="lead">
@@ -149,7 +179,28 @@ function App() {
                 independently, test ideas by building, and care about both how
                 products work and how they feel to use.
               </p>
-              <p className="handle">@vedelkevin</p>
+              <div className="contact-links" aria-label="Contact links">
+                <a href="mailto:kevindek54@gmail.com">
+                  <span>Email</span>
+                  kevindek54@gmail.com
+                </a>
+                <a
+                  href="https://www.instagram.com/ved.el.kev/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>Instagram</span>
+                  @ved.el.kev
+                </a>
+                <a
+                  href="https://github.com/vedelkevin"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span>GitHub</span>
+                  @vedelkevin
+                </a>
+              </div>
             </div>
 
             <div className="interests">
