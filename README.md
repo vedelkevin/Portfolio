@@ -1,4 +1,4 @@
-# Cyril's Portfolio
+# Kevin Langat's Portfolio
 
 A personal portfolio built with React, TypeScript, and Vite.
 

@@ -1,7 +1,7 @@
 # Portfolio File Creation Implementation
 
 1. **Define the portfolio content and file structure**
-   Plan the React components, styles, and assets needed to present Cyril as a
+   Plan the React components, styles, and assets needed to present Kevin Langat as a
    student developer. Include sections for an introduction, featured work,
    Memora, achievements, technical interests, and contact links. Keep unknown
    details as clearly labeled placeholders rather than inventing information.

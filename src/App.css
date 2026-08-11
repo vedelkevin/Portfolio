@@ -53,8 +53,8 @@
   height: 28px;
   place-items: center;
   border-radius: 50%;
-  color: var(--background);
-  background: var(--text);
+  color: var(--accent-contrast);
+  background: var(--accent);
   font-size: 13px;
   font-weight: 700;
 }
@@ -223,12 +223,12 @@ footer {
 }
 
 .button-primary {
-  color: var(--background);
-  background: var(--text);
+  color: var(--accent-contrast);
+  background: var(--accent);
 }
 
 .button-primary:hover {
-  opacity: 0.88;
+  background: var(--accent-strong);
 }
 
 .button-secondary {

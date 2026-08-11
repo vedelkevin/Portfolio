@@ -2,7 +2,7 @@ Portfolio Context
 
 About Me
 
-Name: Cyril
+Name: Kevin Langat
 Role: Student Developer
 Handle: @vedelkevin
 

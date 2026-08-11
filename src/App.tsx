@@ -36,9 +36,9 @@ function App() {
       </a>
 
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Cyril, home">
-          <span className="wordmark-mark">C</span>
-          <span>Cyril</span>
+        <a className="wordmark" href="#top" aria-label="Kevin Langat, home">
+          <span className="wordmark-mark">K</span>
+          <span>Kevin Langat</span>
         </a>
 
         <nav aria-label="Primary navigation">
@@ -62,7 +62,7 @@ function App() {
             <span>Turning ideas into useful things.</span>
           </h1>
           <p className="hero-copy">
-            I&apos;m Cyril, a student developer exploring software, AI, and
+            I&apos;m Kevin Langat, a student developer exploring software, AI, and
             creative technology through ambitious, practical projects.
           </p>
           <div className="hero-actions">
@@ -200,7 +200,7 @@ function App() {
       </main>
 
       <footer>
-        <p>© {new Date().getFullYear()} Cyril</p>
+        <p>© {new Date().getFullYear()} Kevin Langat</p>
         <p>Designed and built with curiosity.</p>
       </footer>
     </>
