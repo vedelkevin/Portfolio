@@ -1,6 +1,9 @@
+import { Suspense, lazy } from 'react'
 import ThemeToggle from './components/ThemeToggle'
 import ScrollToTop from './components/ScrollToTop'
 import './App.css'
+
+const EarthGlobe = lazy(() => import('./components/EarthGlobe'))
 
 const interests = [
   'Software development',
@@ -127,6 +130,20 @@ function App() {
               </p>
             </div>
           </article>
+
+          <div className="globe-block">
+            <Suspense fallback={<div className="earth-globe" aria-hidden="true" />}>
+              <EarthGlobe />
+            </Suspense>
+            <div className="globe-copy">
+              <p className="eyebrow">Built to travel</p>
+              <h3>Ideas that work anywhere.</h3>
+              <p>
+                Memora is designed to be learned from, and shared, wherever
+                curiosity happens to be.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section className="section about-section" id="about">
