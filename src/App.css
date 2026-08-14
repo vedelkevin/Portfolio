@@ -274,6 +274,7 @@ footer {
 }
 
 .section {
+  position: relative;
   padding: 112px 0;
   border-top: 1px solid var(--border-muted);
 }
@@ -484,10 +485,27 @@ footer {
   position: relative;
   height: 260px;
   margin: 0;
+  perspective: 900px;
+}
+
+.photo-card-inner {
+  position: relative;
+  height: 100%;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--surface);
+  transform: rotateX(calc(var(--local-y, 0) * -3deg))
+    rotateY(calc(var(--local-x, 0) * 4deg));
+  transition:
+    transform 220ms ease-out,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.photo-card:hover .photo-card-inner {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
 }
 
 .photo-card img {
@@ -495,13 +513,47 @@ footer {
   height: 100%;
   object-fit: cover;
   filter: saturate(0.85);
+  transform: scale(1.06)
+    translate3d(
+      calc(var(--local-x, 0) * -10px),
+      calc(var(--local-y, 0) * -10px),
+      0
+    );
   transition:
     filter 300ms ease,
-    transform 500ms ease;
+    transform 220ms ease-out;
 }
 
-.photo-card::after {
+.photo-card:hover img {
+  filter: saturate(1.08);
+  transform: scale(1.12)
+    translate3d(
+      calc(var(--local-x, 0) * -14px),
+      calc(var(--local-y, 0) * -14px),
+      0
+    );
+}
+
+.photo-scanlines {
   position: absolute;
+  z-index: 1;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 26px 26px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+}
+
+.photo-card:hover .photo-scanlines {
+  opacity: 1;
+}
+
+.photo-card-inner::after {
+  position: absolute;
+  z-index: 2;
   inset: 0;
   background: linear-gradient(
     180deg,
@@ -512,23 +564,59 @@ footer {
   pointer-events: none;
 }
 
-.photo-card:hover img {
-  filter: saturate(1.08);
-  transform: scale(1.035);
+.photo-spotlight {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: radial-gradient(
+    240px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(255, 255, 255, 0.32),
+    transparent 68%
+  );
+  opacity: 0;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+}
+
+.photo-card:hover .photo-spotlight {
+  opacity: 1;
 }
 
 .photo-card figcaption {
   position: absolute;
-  z-index: 1;
+  z-index: 4;
   right: 18px;
   bottom: 16px;
   left: 18px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
   color: #ffffff;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  pointer-events: none;
+}
+
+.photo-meta {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.photo-card:hover .photo-meta {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .about-copy p {
@@ -635,6 +723,7 @@ footer {
 }
 
 .closing {
+  position: relative;
   display: flex;
   min-height: 500px;
   padding: 112px 0;
@@ -934,5 +1023,216 @@ footer p {
 
   .globe-copy p:last-child {
     margin-inline: auto;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Interactive scene backdrops
+   Themed line-art plates that sit behind each section and drift
+   with the pointer at three different depths.
+   --------------------------------------------------------------- */
+
+.scene {
+  position: absolute;
+  z-index: 0;
+  inset-block: 0;
+  inset-inline: calc(-1 * max(24px, (100vw - var(--max-width)) / 2));
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 900ms ease;
+}
+
+.scene.is-revealed {
+  opacity: var(--scene-opacity);
+}
+
+.scene-layer {
+  position: absolute;
+  color: var(--accent);
+  transform: translate3d(
+    calc(var(--pointer-x, 0) * var(--depth) * -1px),
+    calc(var(--pointer-y, 0) * var(--depth) * -1px),
+    0
+  );
+}
+
+.scene-layer-far {
+  --depth: 9;
+  opacity: 0.6;
+}
+
+.scene-layer-mid {
+  --depth: 20;
+  opacity: 0.85;
+}
+
+.scene-layer-near {
+  --depth: 34;
+}
+
+.scene svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  overflow: visible;
+}
+
+/* Keeps every hairline the same weight no matter how far the art is scaled */
+.scene svg :is(path, circle, ellipse, rect, line) {
+  vector-effect: non-scaling-stroke;
+}
+
+.scene .scene-hairline {
+  opacity: 0.5;
+  stroke-width: 0.75;
+}
+
+.scene .scene-accent {
+  stroke: var(--accent-strong);
+  stroke-width: 1.9;
+}
+
+.scene .scene-node {
+  fill: var(--accent);
+  stroke: none;
+}
+
+
+
+/* Per-section composition: art is placed in the open areas each
+   section leaves free, plus the full-bleed margins beside the
+   1200px content column. */
+
+.scene[data-scene='hero'] .scene-layer-far {
+  top: -7%;
+  right: 1%;
+  width: min(540px, 40vw);
+}
+
+.scene[data-scene='hero'] .scene-layer-mid {
+  right: 5%;
+  bottom: 13%;
+  width: min(320px, 25vw);
+}
+
+.scene[data-scene='hero'] .scene-layer-near {
+  bottom: 3%;
+  left: 0;
+  width: min(320px, 24vw);
+}
+
+.scene[data-scene='work'] .scene-layer-far {
+  top: 3%;
+  left: -3%;
+  width: min(420px, 31vw);
+}
+
+.scene[data-scene='work'] .scene-layer-mid {
+  top: 2%;
+  right: 0;
+  width: min(400px, 29vw);
+}
+
+.scene[data-scene='work'] .scene-layer-near {
+  bottom: 1%;
+  left: 6%;
+  width: min(280px, 21vw);
+}
+
+/* Panorama plates are drawn wide, so they only need an inline inset */
+
+.scene[data-scene='about'] .scene-layer-far {
+  top: 44%;
+  right: 0;
+  left: 0;
+}
+
+.scene[data-scene='about'] .scene-layer-mid {
+  top: 6%;
+  right: 1%;
+  width: min(320px, 24vw);
+}
+
+.scene[data-scene='about'] .scene-layer-near {
+  bottom: 4%;
+  left: 1%;
+  width: min(240px, 19vw);
+}
+
+.scene[data-scene='achievements'] .scene-layer-far {
+  right: 0;
+  bottom: -6%;
+  left: 0;
+}
+
+.scene[data-scene='achievements'] .scene-layer-mid {
+  top: 4%;
+  right: 2%;
+  width: min(340px, 26vw);
+}
+
+.scene[data-scene='achievements'] .scene-layer-near {
+  bottom: 2%;
+  left: 0;
+  width: min(280px, 21vw);
+}
+
+.scene[data-scene='closing'] .scene-layer-far {
+  top: -14%;
+  right: 3%;
+  width: min(460px, 34vw);
+}
+
+.scene[data-scene='closing'] .scene-layer-mid {
+  right: 0;
+  bottom: 2%;
+  left: 0;
+}
+
+.scene[data-scene='closing'] .scene-layer-near {
+  top: 10%;
+  left: 1%;
+  width: min(220px, 17vw);
+}
+
+/* Keep readable content above every backdrop */
+
+.hero > *:not(.scene),
+.section > *:not(.scene),
+.closing > *:not(.scene) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .scene {
+    inset-inline: 0;
+  }
+
+  .scene-layer-far {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .scene-layer-mid {
+    display: none;
+  }
+
+  .scene-layer-near {
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-layer,
+  .photo-card-inner,
+  .photo-card img,
+  .photo-card:hover img {
+    transform: none;
   }
 }

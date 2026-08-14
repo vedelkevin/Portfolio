@@ -1,6 +1,9 @@
 import { Suspense, lazy } from 'react'
 import ThemeToggle from './components/ThemeToggle'
 import ScrollToTop from './components/ScrollToTop'
+import SceneBackdrop from './components/SceneBackdrop'
+import InteractivePhoto from './components/InteractivePhoto'
+import usePointerScene from './hooks/usePointerScene'
 import './App.css'
 
 const EarthGlobe = lazy(() => import('./components/EarthGlobe'))
@@ -33,6 +36,8 @@ function ArrowIcon() {
 }
 
 function App() {
+  usePointerScene()
+
   return (
     <>
       <a className="skip-link" href="#main">
@@ -59,6 +64,7 @@ function App() {
 
       <main id="main">
         <section className="hero" id="top">
+          <SceneBackdrop variant="hero" />
           <div className="hero-status">
             <span aria-hidden="true" />
             Student developer
@@ -90,6 +96,7 @@ function App() {
         </section>
 
         <section className="section" id="work">
+          <SceneBackdrop variant="work" />
           <div className="section-heading">
             <div>
               <p className="eyebrow">Featured work</p>
@@ -147,6 +154,7 @@ function App() {
         </section>
 
         <section className="section about-section" id="about">
+          <SceneBackdrop variant="about" />
           <div className="section-heading">
             <div>
               <p className="eyebrow">About</p>
@@ -155,24 +163,18 @@ function App() {
           </div>
 
           <div className="photo-strip">
-            <figure className="photo-card">
-              <img
-                src="/images/building.webp"
-                alt="Laptop displaying code in a development workspace"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Build</figcaption>
-            </figure>
-            <figure className="photo-card">
-              <img
-                src="/images/analysis.webp"
-                alt="Analytics dashboard showing data visualizations"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Analyze</figcaption>
-            </figure>
+            <InteractivePhoto
+              src="/images/building.webp"
+              alt="Laptop displaying code in a development workspace"
+              caption="Build"
+              meta="Software · Web"
+            />
+            <InteractivePhoto
+              src="/images/analysis.webp"
+              alt="Analytics dashboard showing data visualizations"
+              caption="Analyze"
+              meta="Data · Systems"
+            />
           </div>
 
           <div className="about-grid">
@@ -226,6 +228,7 @@ function App() {
         </section>
 
         <section className="section" id="achievements">
+          <SceneBackdrop variant="achievements" />
           <div className="section-heading">
             <div>
               <p className="eyebrow">Achievements</p>
@@ -249,6 +252,7 @@ function App() {
         </section>
 
         <section className="closing">
+          <SceneBackdrop variant="closing" />
           <p className="eyebrow">What&apos;s next</p>
           <h2>Still learning. Still building.</h2>
           <p>
