@@ -227,12 +227,16 @@ function App() {
           </div>
         </section>
 
-        <section className="section" id="achievements">
+        <section
+          className="section"
+          id="achievements"
+          aria-labelledby="achievements-title"
+        >
           <SceneBackdrop variant="achievements" />
           <div className="section-heading">
             <div>
               <p className="eyebrow">Achievements</p>
-              <h2>A record of progress.</h2>
+              <h2 id="achievements-title">A record of progress.</h2>
             </div>
             <p>
               Verified milestones and experiences will be documented here as
@@ -240,15 +244,17 @@ function App() {
             </p>
           </div>
 
-          <div className="achievement-grid">
+          <ul className="achievement-grid">
             {achievementAreas.map((area, index) => (
-              <article className="achievement-card" key={area}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
+              <li className="achievement-card" key={area}>
+                <span aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
                 <h3>{area}</h3>
                 <p>Details to be added.</p>
-              </article>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
 
         <section className="closing">

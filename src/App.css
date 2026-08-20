@@ -722,8 +722,11 @@ footer {
 .achievement-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  padding: 0;
   border-top: 1px solid var(--border);
   border-left: 1px solid var(--border);
+  list-style: none;
 }
 
 .achievement-card {
@@ -735,7 +738,7 @@ footer {
 }
 
 .achievement-card > span {
-  color: var(--text-subtle);
+  color: var(--text-muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11px;
 }
@@ -749,7 +752,7 @@ footer {
 
 .achievement-card p {
   margin: 0;
-  color: var(--text-subtle);
+  color: var(--text-muted);
   font-size: 13px;
 }
 
