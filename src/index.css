@@ -25,6 +25,10 @@
   --grid: rgba(2, 132, 199, 0.1);
   --shadow: 0 1px 2px rgba(3, 105, 161, 0.06),
     0 12px 30px rgba(14, 116, 144, 0.12);
+  --hero-glow: rgba(2, 132, 199, 0.2);
+  --hero-glow-soft: rgba(56, 189, 248, 0.18);
+  --hero-veil: rgba(255, 255, 255, 0.72);
+  --header-height: 64px;
   --max-width: 1200px;
   --scene-opacity: 0.15;
   --pointer-x: 0;
@@ -51,6 +55,9 @@
   --grid: rgba(56, 189, 248, 0.08);
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.25),
     0 12px 32px rgba(0, 0, 0, 0.24);
+  --hero-glow: rgba(56, 189, 248, 0.22);
+  --hero-glow-soft: rgba(14, 165, 233, 0.16);
+  --hero-veil: rgba(12, 74, 110, 0.32);
   --scene-opacity: 0.24;
 }
 

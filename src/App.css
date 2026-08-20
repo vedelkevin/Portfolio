@@ -27,7 +27,7 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   width: 100%;
-  height: 64px;
+  height: var(--header-height);
   padding: 0 max(24px, calc((100vw - var(--max-width)) / 2));
   border-bottom: 1px solid var(--border-muted);
   background: var(--header-bg);
@@ -132,25 +132,56 @@ footer {
 }
 
 .hero {
+  --hero-bleed: calc(-1 * max(24px, (100vw - var(--max-width)) / 2));
+
   position: relative;
-  min-height: min(780px, calc(100vh - 64px));
+  isolation: isolate;
+  min-height: min(780px, calc(100vh - var(--header-height)));
   padding: clamp(110px, 16vh, 180px) 0 80px;
-  overflow: hidden;
 }
 
+/* Full-bleed backdrop for the top of the page. Both layers reach up
+   behind the translucent sticky header so the header and hero read as
+   one panel, and both fade out before the first section border. */
+.hero::before,
 .hero::after {
   position: absolute;
+  top: calc(-1 * var(--header-height));
+  right: var(--hero-bleed);
+  bottom: 0;
+  left: var(--hero-bleed);
+  content: '';
+  pointer-events: none;
+}
+
+/* Accent aurora, echoing the page-level glow in the same sky palette */
+.hero::before {
+  z-index: -2;
+  background:
+    radial-gradient(76% 62% at 78% -6%, var(--hero-glow), transparent 68%),
+    radial-gradient(54% 48% at 2% 30%, var(--hero-glow-soft), transparent 74%),
+    linear-gradient(180deg, var(--hero-veil), transparent 62%);
+}
+
+/* Blueprint mesh, matching the 1px grid used across the project cards */
+.hero::after {
   z-index: -1;
-  top: 0;
-  right: -1px;
-  width: 42%;
-  height: 100%;
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 32px 32px;
-  content: '';
-  mask-image: linear-gradient(to left, black, transparent);
+  -webkit-mask-image: radial-gradient(
+    76% 78% at 82% 2%,
+    #000 10%,
+    rgba(0, 0, 0, 0.45) 52%,
+    transparent 84%
+  );
+  mask-image: radial-gradient(
+    76% 78% at 82% 2%,
+    #000 10%,
+    rgba(0, 0, 0, 0.45) 52%,
+    transparent 84%
+  );
 }
 
 .hero-status,
@@ -890,6 +921,8 @@ footer p {
   }
 
   .hero {
+    --hero-bleed: -16px;
+
     min-height: 650px;
     padding-top: 92px;
   }
@@ -1208,6 +1241,10 @@ footer p {
   z-index: 1;
 }
 
+.hero > .hero-grid {
+  position: absolute;
+}
+
 @media (max-width: 900px) {
   .scene {
     inset-inline: 0;
@@ -1219,6 +1256,10 @@ footer p {
 }
 
 @media (max-width: 560px) {
+  .hero {
+    padding-bottom: 116px;
+  }
+
   .scene-layer-mid {
     display: none;
   }
