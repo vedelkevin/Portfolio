@@ -6,6 +6,7 @@ type InteractivePhotoProps = {
   alt: string
   caption: string
   meta: string
+  eager?: boolean
 }
 
 /**
@@ -14,7 +15,13 @@ type InteractivePhotoProps = {
  * expressed through custom properties so `prefers-reduced-motion` can disable
  * it entirely from CSS.
  */
-function InteractivePhoto({ src, alt, caption, meta }: InteractivePhotoProps) {
+function InteractivePhoto({
+  src,
+  alt,
+  caption,
+  meta,
+  eager = false,
+}: InteractivePhotoProps) {
   const ref = useRef<HTMLElement>(null)
 
   const handlePointerMove = (event: ReactPointerEvent<HTMLElement>) => {
@@ -49,7 +56,13 @@ function InteractivePhoto({ src, alt, caption, meta }: InteractivePhotoProps) {
       onPointerLeave={handlePointerLeave}
     >
       <div className="photo-card-inner">
-        <img src={src} alt={alt} loading="lazy" decoding="async" />
+        <img
+          src={src}
+          alt={alt}
+          loading={eager ? 'eager' : 'lazy'}
+          fetchPriority={eager ? 'high' : 'auto'}
+          decoding="async"
+        />
         <span className="photo-spotlight" aria-hidden="true" />
         <span className="photo-scanlines" aria-hidden="true" />
       </div>

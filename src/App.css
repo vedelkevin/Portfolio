@@ -135,8 +135,10 @@ footer {
   --hero-bleed: calc(-1 * max(24px, (100vw - var(--max-width)) / 2));
 
   position: relative;
-  isolation: isolate;
+  display: flex;
   min-height: min(780px, calc(100vh - var(--header-height)));
+  flex-direction: column;
+  isolation: isolate;
   padding: clamp(110px, 16vh, 180px) 0 80px;
 }
 
@@ -289,12 +291,9 @@ footer {
 }
 
 .hero-grid {
-  position: absolute;
-  right: 0;
-  bottom: 32px;
-  left: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  margin-top: auto;
   padding-top: 13px;
   border-top: 1px solid var(--border-muted);
   color: var(--text-subtle);
@@ -510,6 +509,24 @@ footer {
   grid-template-columns: 1.45fr 0.8fr;
   gap: 12px;
   margin-bottom: 64px;
+}
+
+/* A single full-width photo used to anchor a section */
+.photo-band {
+  align-self: stretch;
+  margin: 24px 0;
+}
+
+.photo-band .photo-card {
+  height: 320px;
+}
+
+.photo-band.hero-media {
+  margin: 40px 0 32px;
+}
+
+.photo-band.hero-media .photo-card {
+  height: 220px;
 }
 
 .photo-card {
@@ -895,6 +912,14 @@ footer p {
     grid-template-columns: 1fr 1fr;
   }
 
+  .photo-band .photo-card {
+    height: 260px;
+  }
+
+  .photo-band.hero-media .photo-card {
+    height: 200px;
+  }
+
   .section-heading {
     gap: 24px;
   }
@@ -951,6 +976,14 @@ footer p {
 
   .photo-card {
     height: 220px;
+  }
+
+  .photo-band .photo-card {
+    height: 200px;
+  }
+
+  .photo-band.hero-media .photo-card {
+    height: 170px;
   }
 
   .project-visual {
@@ -1244,10 +1277,6 @@ footer p {
   z-index: 1;
 }
 
-.hero > .hero-grid {
-  position: absolute;
-}
-
 @media (max-width: 900px) {
   .scene {
     inset-inline: 0;
@@ -1259,10 +1288,6 @@ footer p {
 }
 
 @media (max-width: 560px) {
-  .hero {
-    padding-bottom: 116px;
-  }
-
   .scene-layer-mid {
     display: none;
   }

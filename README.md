@@ -29,3 +29,11 @@ Alternatively, deploy with the Vercel CLI:
 ```bash
 npx vercel
 ```
+
+## Image credits
+
+Photography in `public/images/` is released under
+[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) (public domain)
+and sourced from [StockSnap.io](https://stocksnap.io) via
+[Openverse](https://openverse.org). No attribution is required, but it is
+recorded here for provenance.

@@ -87,6 +87,15 @@ function App() {
               More about me
             </a>
           </div>
+          <div className="photo-band hero-media">
+            <InteractivePhoto
+              src="/images/structure.webp"
+              alt="Blue glass office facade rising against a clear sky"
+              caption="Design"
+              meta="Structure · Detail"
+              eager
+            />
+          </div>
           <div className="hero-grid" aria-hidden="true">
             <span>01</span>
             <span>Build</span>
@@ -137,6 +146,15 @@ function App() {
               </p>
             </div>
           </article>
+
+          <div className="photo-band">
+            <InteractivePhoto
+              src="/images/library.webp"
+              alt="Vaulted historic library reading room lined with books"
+              caption="Recall"
+              meta="Learning · Memory"
+            />
+          </div>
 
           <div className="globe-block">
             <Suspense fallback={<div className="earth-globe" aria-hidden="true" />}>
@@ -244,6 +262,15 @@ function App() {
             </p>
           </div>
 
+          <div className="photo-band">
+            <InteractivePhoto
+              src="/images/summit.webp"
+              alt="Mist rolling over a layered mountain ridge at dawn"
+              caption="Progress"
+              meta="Milestones · Growth"
+            />
+          </div>
+
           <ul className="achievement-grid">
             {achievementAreas.map((area, index) => (
               <li className="achievement-card" key={area}>
@@ -265,6 +292,14 @@ function App() {
             This portfolio will grow alongside the projects, experiments, and
             challenges that shape my work.
           </p>
+          <div className="photo-band">
+            <InteractivePhoto
+              src="/images/horizon.webp"
+              alt="Sunrise breaking over a calm shoreline"
+              caption="Next"
+              meta="Curiosity · Craft"
+            />
+          </div>
           <a className="button button-secondary" href="#top">
             Back to top
             <span aria-hidden="true">↑</span>
